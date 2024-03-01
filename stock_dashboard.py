@@ -12,6 +12,10 @@ def get_stock_data(symbol, time_range="5y"):
     }
 
     response = requests.get(API_BASE_URL + f"stock/{symbol}/chart/{time_range}", params = params)
+    if response.status_code == 200:
+        st.write("conexão sucedida")
+    else:
+        st.write("Conexão falha")
     data = response.json()
 
     if "error" in data:
